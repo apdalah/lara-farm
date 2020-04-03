@@ -1,0 +1,29 @@
+
+<section class="calendar">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <div class="jap-box text-center">
+                  <select name="" id="">
+                      <option value="">Area_41 JAPAN</option>
+                  </select>
+                <v-calendar :first-day-of-week="2">
+                    <div slot='day-content' slot-scope="{ day, attributes, contentStyle }" class="v-day">
+                        <div class="day-cell" >
+                            {{day.day}}
+                                <img v-if="day.id == plantDay" src="@/assets/img/plant.png" alt="" width="10px">
+                            <div v-for="water in getWatering">
+                                <a :href="water.link" v-if="day.id == water.shifting_days"><img  width="10px" src="@/assets/img/ic_water.png" ></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+    	        </v-calendar>
+              </div>
+              <br>
+              <router-link to="/details"><img src="@/assets/img/img_btn.png" alt=""></router-link>
+          </div>
+      </div>
+  </div>
+</section>
+
