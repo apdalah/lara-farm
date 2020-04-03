@@ -612,7 +612,7 @@ main {
 
 .navbar .menu a {
   margin: 0 10px;
-  color: white;
+  color: #333;
 }
 
 .main-footer {
@@ -1050,6 +1050,26 @@ main {
 
 .details .window-box .body {
   padding: 15px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.details .window-box .body::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+.details .window-box .body::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.details .window-box .body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(150, 150, 150, 0.8);
+}
+
+.details .window-box .body::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(150, 150, 150, 0.8);
 }
 
 .details .window-box .body .info-row {

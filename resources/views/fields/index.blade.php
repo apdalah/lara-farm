@@ -53,16 +53,12 @@
             </form>
         </div>
     </div>
-
   </div>
-
 </section>
 @endsection
 
 @push('scripts')
 <script>
-
-
     $('#submit_field').click(function() {
       window.location = '/fields/' + $('#choosefield').val();
     });

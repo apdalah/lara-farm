@@ -15,16 +15,17 @@
 <nav class="navbar" x-data="{ open: false }" @keydown.window.escape="open = false">
     <div class="container">
       <div class="row w-100">
-        <div class="col-6 text-left">
+        <div class="col-3 text-left">
           <h1>
             <a href="/"><img src="/img/logo.png" alt=""></a>
           </h1>
         </div>
-        <div class="col-6">
+        <div class="ml-auto">
           <div class="menu text-right">
+            <a href="/steps">チュートリアル</a>
             @if (Auth::guest())
             <a href="/login" ><img src="/img/btn_ログイン.png" alt=""></a>
-            <a href="/register">Register</a>
+            <a href="/register"><img src="/img/btn_register.png" alt=""></a>
             @else
             <a href="/notes" ><img src="/img/ic_notification.png" alt=""></a>
             <a href="/setting"><img src="/img/ベクトルスマートオブジェクト.png" alt=""></a>

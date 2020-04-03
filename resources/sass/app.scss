@@ -152,7 +152,7 @@ main {
     .menu {
         a {
             margin: 0 10px;
-            color: white;
+            color: #333;
         }
     }
 }
@@ -548,6 +548,27 @@ td{
         }
         .body {
             padding: 15px;
+            max-height: 450px;
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 5px;
+                height: 8px;
+              }
+
+              &::-webkit-scrollbar-track {
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                background: rgba(150, 150, 150, 0.8);
+              }
+
+              &::-webkit-scrollbar-thumb:window-inactive {
+                background: rgba(150, 150, 150, 0.8);
+              }
             .info-row {
                 padding: 15px 0;
                 &:not(:last-child) {
