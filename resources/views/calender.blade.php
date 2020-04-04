@@ -45,14 +45,14 @@
                                     @php 
                                         $date = explode('/', $_SERVER['REQUEST_URI']);
                                         $date = end($date);
+                                        $seedingStartTime = (new Carbon\Carbon($field->getStartPlantTime()))->subDays(8);
                                     @endphp
-                                    
-                                    {{ $plant->watering($field->is_first, $date)->fertilizer_type }}:
+                                    {{ $plant->watering($field->is_first, $date, $seedingStartTime) ?  $plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_type : ''}}:
                                     
 
                                 </div><div class="det-content power"> 
 
-                                    {{ $plant->watering($field->is_first, $date)->fertilizer_amount }}m2 {{ $plant->watering($field->is_first, $date)->water_amount }}ml 
+                                    {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? $plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_amount : ''}}m2 {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? $plant->watering($field->is_first, $date, $seedingStartTime)->water_amount : '' }}ml 
                                 
                                 </div>
                             </div>
