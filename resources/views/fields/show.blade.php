@@ -55,7 +55,8 @@
                         events : [
                             {
                               title : 'WATER',
-                              start : '{{ $field->created_at->addDays(1) }}',
+                              {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
+                              start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
                               imageurl:'/img/ic_water.png'
 
                             },

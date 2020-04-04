@@ -16,11 +16,12 @@ class Plant extends Model
     	$this->belongsToMany(Field::class);
     }
 
-    public function watering($is_first, $date) {
+    public function watering($is_first, $date, $created_at) {
+
     	return \DB::table('watering')->where([
             'category_id' => $this->category_id,
             'is_first' => $is_first,
-            'shifting' => date_diff(date_create($this->created_at) , date_create($date))->format('%a')
+            'shifting' => date_diff(date_create(date('Y-m-d', strtotime($created_at. '+ 1 days'))) , date_create($date))->format('%a')
         ])->first();
     }
 
