@@ -15,7 +15,10 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/setting', 'SettingController@index')->name('setting');
 
 Route::middleware(['auth'])->group(function() {
-	Route::delete('/plant_field/{field}', 'PlantController@updatePlantField')->name('updatePlantFeild');
+
+	Route::put('/plant/{field}', 'PlantController@updatePlant')->name('update-plant');
+	Route::get('/plant/{plant}/field/{field}/edit', 'plantController@editPlant')->name('edit-plant');
+
 	Route::post('/plant_field/{field}', 'PlantController@plantField');
 	Route::resource('/fields', 'FieldController');
 	Route::resource('/plants', 'PlantController');
@@ -29,11 +32,14 @@ Route::middleware(['auth'])->group(function() {
 	//materials routes
 	Route::resource('materials', 'MaterialController')->except(['show']);
 
+	// edit profile dat [phone and username]
+	Route::put('edit-profile/{user}/update', 'HomeController@updateProfile')->name('edit-profile');
+
 });
 
 Auth::routes();
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
