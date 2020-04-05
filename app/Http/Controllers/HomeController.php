@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -47,6 +48,16 @@ class HomeController extends Controller
 
         }
         return view('calender', compact('events', 'timeToPlant'));
+    }
+
+    public function updateProfile(Request $request, User $user)
+    {
+        $user->update([
+            'name' => $request->name,
+            'mobile' => $request->mobile
+        ]);
+
+        return redirect()->route('home');
     }
 
 }

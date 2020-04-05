@@ -27,7 +27,9 @@
                                 野菜:
                                 </div>
                                 <div class="det-content">
-                                    {{ $plant->name }}
+                                    <p style="margin-bottom: 10px;">{{ $plant->name }}</p>
+
+                                    <a style="font-size: 14px;" href="{{ route('edit-plant', ['plant' => $plant->id, 'field' => $field->id]) }}">Change Plant</a>
                                 </div>
                             </div>
                             {{-- @if(isset($timeToPlant))

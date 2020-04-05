@@ -11,13 +11,7 @@
         <div class="col-12">
             <div class="calednar-section">
                 @if($field->hasPlant())
-            
-            <form action="{{ route('updatePlantFeild', $field->id) }}" method="POST">
-              @method('DELETE')
-              @csrf
-              <button type="submit" style="text-decoration: underline;">Change Plant -></button>
-            </form>
-
+                
             <div class="jap-box text-center">
                 <div class="jp-select-box">
                     <select id="choosefield1" name="field_id">
@@ -50,8 +44,8 @@
                 $(document).ready(function() {
                     // page is now ready, initialize the calendar...
                     $('#calendar').fullCalendar({
+                      @php $getPlantThroughField = \App\Plant::find($field->getPlant()->id) @endphp
                         // put your options and callbacks here
-
                         events : [
                             {
                               title : 'WATER',
@@ -60,17 +54,47 @@
                               imageurl:'/img/ic_water.png'
 
                             },
+
+                            @php $firstDayDate = (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) @endphp
+
+                            @if($getPlantThroughField->watering($field->is_first, $firstDayDate, $firstDayDate)->fertilizer_type == 'z-power')
+                            {
+                              title : 'WATER',
+                              {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
+                              start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
+                              imageurl:'/img/zpower.png'
+
+                            },
+                            @else
+                            {
+                              title : 'WATER',
+                              {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
+                              start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
+                              imageurl:'/img/bpower.png'
+
+                            },
+                            @endif
+
                             @foreach($field->plans() as $plan)
                             {
                                 title : 'WATER',
                                 start : '{{ (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) }}',
-                                imageurl:'/img/ic_water.png'
+                                imageurl:'/img/ic_water.png',
+                            },
+
+                            @php $shiftingDays = (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) @endphp
+                            {
+                                title : 'WATER',
+                                start : '{{ (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) }}',
+                                // imageurl:'/img/ic_water.png',
+                                imageurl:"{{$getPlantThroughField->watering($field->is_first, $firstDayDate, $shiftingDays) && $getPlantThroughField->watering($field->is_first, $firstDayDate, $shiftingDays)->fertilizer_type == 'z-power' ? '/img/zpower.png' : '/img/bpower.png'}}",
                             },
                             @endforeach
+
                             {
                               title : 'PLANT',
                               start : '{{ $field->getStartPlantTime() }}',
-                              imageurl:'/img/plant.png'
+                              imageurl:'/img/plant.png',
                             }
                         ],
                         eventRender: function(event, eventElement) {
