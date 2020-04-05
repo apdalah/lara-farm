@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Field;
+use App\Plant;
 
 class PlantController extends Controller
 {
@@ -22,9 +23,19 @@ class PlantController extends Controller
 		return redirect('/fields/'. $field->id);
     }
 
-    public function updatePlantField(Field $field)
+    public function editPlant(Plant $plant, Field $field)
     {
-        $plant = \DB::table('seeding')->where('field_id', '=', $field->id)->delete();
+        $plants = Plant::all();
+
+        return view('plants/edit', compact('plants', 'field'));
+    }
+
+    public function updatePlant(Request $request, Field $field)
+    {   
+        $request->validate(['plant_id' => 'required']);
+        $plant = \DB::table('seeding')->where('field_id', '=', $field->id)->update([
+            'plant_id' => $request->plant_id
+        ]);
         return redirect('/fields/'. $field->id);
     }
     

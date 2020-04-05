@@ -10,17 +10,27 @@
               お知らせ一覧
             </h2>
           </div>
-          <div class="body text-left">
-            <div class="button-group">
-              <h2 class="jap-stroke text-center" data-text="ユーザーネーム">ユーザーネーム</h2>
-              <input type="text" name="" id="" placeholder="ユーザーネームを入力">
-            </div>
-            <div class="button-group">
-              <h2 class="jap-stroke text-center" data-text="電話番号">電話番号</h2>
-              <input type="text" name="" id="" placeholder="000-0000-0000">
+          
+          <form action="{{ route('edit-profile', auth()->user()->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="body text-left">
+              <div class="button-group">
+                <h2 class="jap-stroke text-center" data-text="ユーザーネーム">ユーザーネーム</h2>
+                <input type="text" name="name" value="{{ auth()->user()->name}}" placeholder="ユーザーネームを入力">
+              </div>
+              <div class="button-group">
+                <h2 class="jap-stroke text-center" data-text="電話番号">電話番号</h2>
+                <input type="text" name="mobile" value="{{ auth()->user()->mobile}}" placeholder="000-0000-0000">
+              </div>
+              
+              <div class="button-group">
+                <input style="background-color: gold" type="submit" value="Edit Profile">
+              </div>
+
             </div>
 
-          </div>
+          </form>
         </div>
 
         <ul class="links text-left text-orange">
@@ -38,6 +48,7 @@
                       @csrf
                   </form>
           </li>
+
         </ul>
 
 
