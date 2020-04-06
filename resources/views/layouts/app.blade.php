@@ -20,6 +20,29 @@
             <a href="{{route('index')}}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
           </h1>
         </div>
+
+        <div class="col-3 float-left">
+          <div class="dropdown">
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Languages
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                  <li style="font-size: 16px;">
+                      <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                          {{ $properties['native'] }}
+                      </a>
+                  </li>
+              @endforeach
+
+            </div>
+            
+          </div>
+        </div>
+
         <div class="ml-auto">
           <div class="menu text-right">
             <a href="{{ route('steps') }}">チュートリアル</a>
