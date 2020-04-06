@@ -1,6 +1,7 @@
-### Lara Farm
+# farm
+JAPAN FARM PROJECT
 
-Installation steps 
+### Installation steps 
 
 run the following commands 
 ```
