@@ -14,7 +14,7 @@
             <div class="flex justify-center">
               <div class="window-box" >
                 <div class="head d-flex align-items-center ">
-                  <img src="/img/ic_area.png" alt="" />
+                  <img src="{{ asset('img/ic_area.png')}}" alt="" />
                   <h2>
                     野菜詳細
                   </h2>
@@ -34,7 +34,7 @@
                             </select> --}}
 
                         </div>
-                        <button type="submit"><img src="/img/img_btn.png" alt=""></button>
+                        <button type="submit"><img src="{{ asset('img/img_btn.png')}}" alt=""></button>
                       </form>
 
                     </div>
