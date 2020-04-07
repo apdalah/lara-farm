@@ -6,7 +6,7 @@
 <section class="area col-12">
   <div class="window-box" v-if="window == 'fieldWindow'">
     <div class="head d-flex align-items-center ">
-      <img src="/img/ic_area.png" alt="" />
+      <img src="{{ asset('img/ic_area.png') }}" alt="" />
       <h2>
         土地詳細
       </h2>
@@ -30,7 +30,7 @@
                     </select>
                 </div>
                 <button type="submit" id="submit_field">
-                    <img src="/img/img_btn.png" alt="">
+                    <img src="{{ asset('img/img_btn.png') }}" alt="">
                 </button>
 			@else
 			    No fields are available !!</a>
@@ -49,7 +49,7 @@
                 <div class="area-square">
                 <input name="width" id="grid-first-name" type="text" placeholder="9999"><sub>m</sub> <span class="jap-stroke text-center" data-text="x">x</span><input name="height" id="grid-last-name" type="text"  placeholder="9999"><sub>m</sub>
                 </div>
-                <button type="submit"><img src="/img/img_btn.png" alt=""></button>
+                <button type="submit"><img src="{{ asset('img/img_btn.png') }}" alt=""></button>
             </form>
         </div>
     </div>

@@ -17,18 +17,41 @@
       <div class="row w-100">
         <div class="col-3 text-left">
           <h1>
-            <a href="/"><img src="/img/logo.png" alt=""></a>
+            <a href="{{route('index')}}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
           </h1>
         </div>
+
+        <div class="col-3 float-left">
+          <div class="dropdown">
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Languages
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                  <li style="font-size: 16px;">
+                      <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                          {{ $properties['native'] }}
+                      </a>
+                  </li>
+              @endforeach
+
+            </div>
+            
+          </div>
+        </div>
+
         <div class="ml-auto">
           <div class="menu text-right">
-            <a href="/steps">チュートリアル</a>
+            <a href="{{ route('steps') }}">チュートリアル</a>
             @if (Auth::guest())
-            <a href="/login" ><img src="/img/btn_ログイン.png" alt=""></a>
-            <a href="/register"><img src="/img/btn_register.png" alt=""></a>
+            <a href="{{ route('login') }}" ><img src="{{ asset('img/btn_ログイン.png') }}" alt=""></a>
+            <a href="{{route('register')}}"><img src="{{ asset('img/btn_register.png') }}" alt=""></a>
             @else
-            <a href="/notes" ><img src="/img/ic_notification.png" alt=""></a>
-            <a href="/setting"><img src="/img/ベクトルスマートオブジェクト.png" alt=""></a>
+            <a href="/notes" ><img src="{{ asset('img/ic_notification.png') }}" alt=""></a>
+            <a href="{{ route('setting') }}"><img src="{{ asset('img/ベクトルスマートオブジェクト.png') }}" alt=""></a>
 
             @endif
           </div>
@@ -45,7 +68,7 @@
 
 <footer class="main-footer">
     <div class="decor">
-      <img src="/img/deco_grass.png" alt="">
+      <img src="{{ asset('img/deco_grass.png') }}" alt="">
       <div class="green-bg"></div>
     </div>
     <div class="container">

@@ -4,7 +4,7 @@
 <section class="details">
     <div class="window-box">
       <div class="head d-flex align-items-center ">
-        <img src="/img/ic_Vegetable.png" alt="" />
+        <img src="{{ asset('img/ic_Vegetable.png') }}" alt="" />
         <h2>
           野菜一覧
         </h2>
@@ -15,7 +15,7 @@
                 @php $plant = \App\Plant::find($field->getPlant()->id) @endphp
                     <div class="info-row d-flex">
                         <div class="info-logo">
-                        <img src="/img/vegetables/{{ $plant->id}}.png" alt="">
+                        <img src="{{ asset('img/vegetables/' .$plant->id. '.png') }}" alt="">
                         </div>
                         <div class="info-column">
                             <div class="info-cell">

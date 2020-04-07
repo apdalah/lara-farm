@@ -30,7 +30,7 @@
               <div id='calendar'></div>
             </div>
             <a class="add_vegetable" href="/fields">
-                <img src="/img/btn_addvegetable_jp.png" alt="">
+                <img src="{{ asset('img/btn_addvegetable_jp.png')}}" alt="">
             </a>
 
         </div>
@@ -51,7 +51,7 @@
                               title : 'WATER',
                               {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
                               start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
-                              imageurl:'/img/ic_water.png'
+                              imageurl:"{{asset('img/ic_water.png')}}"
 
                             },
 
@@ -62,7 +62,7 @@
                               title : 'WATER',
                               {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
                               start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
-                              imageurl:'/img/zpower.png'
+                              imageurl:"{{asset('img/zpower.png')}}"
 
                             },
                             @else
@@ -70,7 +70,7 @@
                               title : 'WATER',
                               {{-- start : '{{ $field->created_at->addDays(1) }}', --}}
                               start: '{{ (new Carbon\Carbon($field->getStartPlantTime()))->subDays(7) }}',
-                              imageurl:'/img/bpower.png'
+                              imageurl:"{{asset('img/bpower.png')}}"
 
                             },
                             @endif
@@ -79,14 +79,13 @@
                             {
                                 title : 'WATER',
                                 start : '{{ (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) }}',
-                                imageurl:'/img/ic_water.png',
+                                imageurl:"{{asset('img/ic_water.png')}}",
                             },
 
                             @php $shiftingDays = (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) @endphp
                             {
                                 title : 'WATER',
                                 start : '{{ (new Carbon\Carbon($field->getStartPlantTime()))->addDays($plan->shifting) }}',
-                                // imageurl:'/img/ic_water.png',
                                 imageurl:"{{$getPlantThroughField->watering($field->is_first, $firstDayDate, $shiftingDays) && $getPlantThroughField->watering($field->is_first, $firstDayDate, $shiftingDays)->fertilizer_type == 'z-power' ? '/img/zpower.png' : '/img/bpower.png'}}",
                             },
                             @endforeach
@@ -94,7 +93,7 @@
                             {
                               title : 'PLANT',
                               start : '{{ $field->getStartPlantTime() }}',
-                              imageurl:'/img/plant.png',
+                              imageurl:'{{asset('img/plant.png')}}',
                             }
                         ],
                         eventRender: function(event, eventElement) {
@@ -116,7 +115,7 @@
             <div class="flex justify-center">
               <div class="window-box" >
                 <div class="head d-flex align-items-center ">
-                  <img src="/img/ic_area.png" alt="" />
+                  <img src="{{asset('img/ic_area.png')}}" alt="" />
                   <h2>
                     野菜詳細
                   </h2>
@@ -135,7 +134,7 @@
                             </select> --}}
 
                         </div>
-                        <button type="submit"><img src="/img/img_btn.png" alt=""></button>
+                        <button type="submit"><img src="{{ asset('img/img_btn.png')}}" alt=""></button>
                       </form>
 
                     </div>

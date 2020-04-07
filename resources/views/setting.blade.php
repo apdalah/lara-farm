@@ -41,9 +41,12 @@
             <router-link to="/privacy" class="text-orange">プライバシーポリシー</router-link>
           </li>
           <li>
+            <router-link to="/privacy" class="text-orange">サービス情報</router-link>
+          </li>
+          <li>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"
-                                {{ __('Logout') }} >サービス情報</a>
+                                {{ __('Logout') }} >Logout</a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
                   </form>

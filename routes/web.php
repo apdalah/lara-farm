@@ -11,36 +11,45 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('index');
-Route::get('/setting', 'SettingController@index')->name('setting');
+Route::group([
 
-Route::middleware(['auth'])->group(function() {
+		'prefix' => LaravelLocalization::setLocale(),
+		'middleware' => ['localizationRedirect', 'localeSessionRedirect', 'localeViewPath']
 
-	Route::put('/plant/{field}', 'PlantController@updatePlant')->name('update-plant');
-	Route::get('/plant/{plant}/field/{field}/edit', 'plantController@editPlant')->name('edit-plant');
+	], function()
+{
 
-	Route::post('/plant_field/{field}', 'PlantController@plantField');
-	Route::resource('/fields', 'FieldController');
-	Route::resource('/plants', 'PlantController');
-	Route::get('/calendar/{time}', 'HomeController@calendar');
-	//users routes
-	Route::resource('users', 'UserController')->except(['show']);
+	Route::get('/', 'HomeController@index')->name('index');
+	Route::get('/setting', 'SettingController@index')->name('setting');
 
-	//categories routes
-	Route::resource('categories', 'CategoryController')->except(['show']);
+	Route::middleware(['auth'])->group(function() {
 
-	//materials routes
-	Route::resource('materials', 'MaterialController')->except(['show']);
+		Route::put('/plant/{field}', 'PlantController@updatePlant')->name('update-plant');
+		Route::get('/plant/{plant}/field/{field}/edit', 'plantController@editPlant')->name('edit-plant');
 
-	// edit profile dat [phone and username]
-	Route::put('edit-profile/{user}/update', 'HomeController@updateProfile')->name('edit-profile');
+		Route::post('/plant_field/{field}', 'PlantController@plantField');
+		Route::resource('/fields', 'FieldController');
+		Route::resource('/plants', 'PlantController');
+		Route::get('/calendar/{time}', 'HomeController@calendar');
+		//users routes
+		Route::resource('users', 'UserController')->except(['show']);
 
+		//categories routes
+		Route::resource('categories', 'CategoryController')->except(['show']);
+
+		//materials routes
+		Route::resource('materials', 'MaterialController')->except(['show']);
+
+		// edit profile dat [phone and username]
+		Route::put('edit-profile/{user}/update', 'HomeController@updateProfile')->name('edit-profile');
+
+	});
+
+	Auth::routes();
+
+	// Auth::routes();
+
+	Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::get('/steps', 'StepsController@index')->name('steps');
 });
-
-Auth::routes();
-
-// Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/steps', 'StepsController@index')->name('steps');
