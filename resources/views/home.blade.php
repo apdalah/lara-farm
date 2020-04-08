@@ -16,7 +16,7 @@
       </h1>
       <br>
       <div>
-        <a href="/fields" class="text-orange"><img src="{{ asset('img/btn_big_ログイン.png')}}" alt=""></a>
+        <a href="{{ route('fields.index') }}" class="text-orange"><img src="{{ asset('img/btn_big_ログイン.png')}}" alt=""></a>
       </div>
 
       <br><br>
@@ -45,7 +45,7 @@
       </div>
       <br><br><br>
       <div>
-        <a href="/fields" class="text-orange"><img src="{{ asset('img/btn_big_ログイン.png')}}" alt=""></a>
+        <a href="{{ route('fields.index') }}" class="text-orange"><img src="{{ asset('img/btn_big_ログイン.png')}}" alt=""></a>
       </div>
     </div>
   </section>

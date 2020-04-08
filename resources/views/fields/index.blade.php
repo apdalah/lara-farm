@@ -42,7 +42,7 @@
         </div>
         <div class="create-area">
           <h3 class="jap-stroke text-center" data-text="新しく土地を追加する">新しく土地を追加する</h3>
-          <form method="POST" action="/fields">
+          <form method="POST" action="{{route('fields.store')}}">
                 @csrf
 
                 <input name="name" id="grid-password" type="text" placeholder="土地の名前を入力して下さい">

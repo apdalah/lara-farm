@@ -123,7 +123,7 @@
                 <div class="body text-left">
                     <div>
                       <h3 class="jap-stroke text-center" data-text="土地の選択">土地の選択</h3>
-                      <form action="/plant_field/{{$field->id}}" method="POST" class="add_plant">
+                      <form action="{{ route('plant-field.store', $field->id)}}" method="POST" class="add_plant">
                         @csrf
                         <div class="jp-select-plant row justify-content-center">
                               @foreach($plants as $plant)

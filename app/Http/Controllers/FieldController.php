@@ -20,7 +20,8 @@ class FieldController extends Controller
     	return view('fields.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
     	$field = $this->validate($request, [
     		'name' => 'required',
     		'width' => 'required',

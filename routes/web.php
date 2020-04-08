@@ -27,7 +27,7 @@ Route::group([
 		Route::put('/plant/{field}', 'PlantController@updatePlant')->name('update-plant');
 		Route::get('/plant/{plant}/field/{field}/edit', 'plantController@editPlant')->name('edit-plant');
 
-		Route::post('/plant_field/{field}', 'PlantController@plantField');
+		Route::post('/plant_field/{field}', 'PlantController@plantField')->name('plant-field.store');
 		Route::resource('/fields', 'FieldController');
 		Route::resource('/plants', 'PlantController');
 		Route::get('/calendar/{time}', 'HomeController@calendar');

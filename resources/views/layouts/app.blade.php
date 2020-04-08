@@ -92,8 +92,7 @@
   </footer>
 
 
-
-@if(!\Request::is('fields/*'))
+@if(!\Request::routeIs('fields.show'))
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
