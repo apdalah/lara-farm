@@ -1,0 +1,35 @@
+
+.jap-box{
+    display: inline-block;
+    padding:8px;
+    margin:0 auto;
+    background: #411e0a;
+    text-align: center;
+    border-radius: 8px;
+    select{
+        width:100%;
+        margin-bottom:15px;
+        border-radius: 8px;
+    padding:8px;   
+   
+ }
+    .vc-container{
+        margin:0 auto;
+        padding: 5px;
+        min-height: 365px;
+    }
+}
+.calendar {
+    .vc-grid-cell,.vc-day,.v-day,.day-cell{
+       height: 52px !important;
+        min-height:  1px !important;
+        .day-cell{
+            background: #dddddd;
+            margin: 2px;
+            border-radius: 5px;
+        }
+    }
+    
+}
+
+
