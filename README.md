@@ -10,6 +10,12 @@ cd lara-farm
 composer install
 cp .env-example .env
 ```
+then run
+
+```
+npm install
+```
+
 Enter your database credentials in `.env` then
 ```
 php artisan migrate
