@@ -29,9 +29,10 @@
                                 <div class="det-content">
                                     <p style="margin-bottom: 10px;">{{ $plant->name }}</p>
 
-                                    <a style="font-size: 14px;" href="{{ route('edit-plant', ['plant' => $plant->id, 'field' => $field->id]) }}">Change Plant</a>
+                                    <a style="font-size: 12px;" href="{{ route('edit-plant', ['plant' => $plant->id, 'field' => $field->id]) }}">Change Plant</a>
                                 </div>
                             </div>
+
                             {{-- @if(isset($timeToPlant))
                             <div class="info-cell">
                                 <div class="det-title">
@@ -42,6 +43,7 @@
                                 </div>
                             </div>
                             @endif --}}
+
                             <div class="info-cell d-flex align-items-center">
                                <div class="det-title power">
                                     @php 
@@ -49,13 +51,28 @@
                                         $date = end($date);
                                         $seedingStartTime = (new Carbon\Carbon($field->getStartPlantTime()))->subDays(8);
                                     @endphp
-                                    {{ $plant->watering($field->is_first, $date, $seedingStartTime) ?  $plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_type : ''}}:
+                                    <span style="font-size: 10px">Fertilizer:</span>
                                     
 
-                                </div><div class="det-content power"> 
+                                </div>
+                                <div class="det-content power">
 
-                                    {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? $plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_amount : ''}}m2 {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? $plant->watering($field->is_first, $date, $seedingStartTime)->water_amount : '' }}ml 
+                                    <span style="font-size: 10px">
+                                        {{ $plant->watering($field->is_first, $date, $seedingStartTime) ?  $plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_type : ''}} => {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? ($plant->watering($field->is_first, $date, $seedingStartTime)->fertilizer_amount) * ($field->height * $field->width) : ''}} m
+                                    </span>
                                 
+                                </div>
+                            </div>
+
+                            <div class="info-cell d-flex align-items-center">
+                               <div class="det-title power">
+                                    <span style="font-size: 12px">Water:</span>
+                                </div>
+
+                                <div class="det-content power">
+                                    <span style="font-size: 12px">
+                                        {{ $plant->watering($field->is_first, $date, $seedingStartTime) ? $plant->watering($field->is_first, $date, $seedingStartTime)->water_amount : '' }}ml 
+                                    </span>
                                 </div>
                             </div>
 
