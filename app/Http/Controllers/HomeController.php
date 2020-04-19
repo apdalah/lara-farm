@@ -28,7 +28,6 @@ class HomeController extends Controller
 
     public function calendar($time) 
     {
-
         $events = [];
         $timeToPlant ="" ;
         foreach(auth()->guard('farmer')->user()->fields as $field) {
