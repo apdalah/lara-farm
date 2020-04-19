@@ -61,7 +61,7 @@
     </div>
   </nav>
   <main>
-
+          @include('partials/_errors')
           @yield('content')
 
   </main>

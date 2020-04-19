@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Field;
 use App\Plant;
+use Carbon\Carbon;
 
 class PlantController extends Controller
 {
@@ -14,10 +15,15 @@ class PlantController extends Controller
 
     public function plantField(Request $request, Field $field) {
     	$this->validate($request, [
-            'plant_id' => 'required|exists:plants,id',
+            'plant_date' => 'required | date | after:yesterday',
+            'plant_type' => 'required | exists:plants,id',
         ]);
+
+        $plant_time = (new Carbon($request->plant_date))->setTime(9,30,0);
+
     	\DB::table('seeding')->insert(
-		    ['field_id' => $field->id, 'plant_id' => $request->plant_id, 'created_at' => new \DateTime()]
+		    // ['field_id' => $field->id, 'plant_id' => $request->plant_id, 'created_at' => new \DateTime()]
+            ['field_id' => $field->id, 'plant_id' => $request->plant_type, 'created_at' => $plant_time]
 		);
 
 		return redirect('/fields/'. $field->id);
