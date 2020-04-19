@@ -114,7 +114,25 @@
 
             {{-- if the field does not have plant => show th add modal to add a new plant --}}
             @else
+
+            <script
+              src="https://code.jquery.com/jquery-3.4.1.min.js"
+              integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+              crossorigin="anonymous"></script>
+
             <div class="flex justify-center">
+
+              <div class="window-box mb-2" id="plant_content_div" style="display: none;">
+                  <div style="
+                    padding: 10px 5px;
+                  ">
+                    <div class="text-left">
+                      <p class="mb-2">Z-Power Amount : <span id="z_power_fertilizer_amount" class="text-danger"></span> m</p>
+                      <p>B-Power Amount : <span id="b_power_fertilizer_amount" class="text-danger"></span> m</p>
+                    </div>
+                  </div>
+                </div>
+
               <div class="window-box" >
                 <div class="head d-flex align-items-center ">
                   <img src="{{asset('img/ic_area.png')}}" alt="" />
@@ -129,12 +147,17 @@
                         @csrf
 
                         <div>
-                          <input class="text-center" type="date" name="plant_time">
+                          <input class="text-center" type="date" name="plant_date">
                         </div>
                         <div class="jp-select-plant row justify-content-center">
                               @foreach($plants as $plant)
                               {{-- <option value="">{{ $plant->name }}</option> --}}
-                                <input type="radio" name="plant_id" class="selectPlant" value="{{ $plant->id }}" style="background-image: url(/img/vegetables/{{ $plant->id }}.png)">
+                                      @php
+                                        $field_area = $field->width * $field->height;
+                                        $z_power_amount = \DB::table('watering')->where([['category_id', $plant->category_id], ['fertilizer_type', 'z-power']])->sum('fertilizer_amount') * $field_area;
+                                        $b_power_amount = \DB::table('watering')->where([['category_id', $plant->category_id], ['fertilizer_type', 'b-power']])->sum('fertilizer_amount') * $field_area;
+                                      @endphp
+                                <input data-z="{{$z_power_amount}}" data-b="{{$b_power_amount}}" type="radio" name="plant_type" class="selectPlant plant_type" value="{{ $plant->id }}" style="background-image: url(/img/vegetables/{{ $plant->id }}.png)">
                               @endforeach
                               {{-- <select aria-label="plant" name="plant_id" class="form-select h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-800 sm:text-sm sm:leading-5">
                             </select> --}}
@@ -162,5 +185,11 @@
     $('#choosefield1').change(function() {
       window.location = '/fields/' + $('#choosefield1').val();
     });
+
+    $('.plant_type').click(function() {
+      $("#plant_content_div").show();
+      $("#z_power_fertilizer_amount").html($(this).attr('data-z'))
+      $("#b_power_fertilizer_amount").html($(this).attr('data-b'))
+    })
 </script>
 @endpush
