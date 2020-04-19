@@ -11,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:farmer');
+    }
 
     /**
      * Show the application dashboard.
@@ -24,5 +24,27 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function calendar($time) 
+    {
+        $events = [];
+        $timeToPlant ="" ;
+        foreach(auth()->guard('farmer')->user()->fields as $field) {
+           if($field->hasPlant()){
+            foreach($field->plans() as $plan){
+                if((new \Carbon\Carbon($field->getStartPlantTime()->format("Y-m-d")))->addDays($plan->shifting)->toDateString() == $time ) {
+                    array_push($events, $field);
+                }
+            }
+            if($field->getStartPlantTime()->subDays(7)->toDateString() == $time) {
+                array_push($events, $field);
+            }
+            if($field->getStartPlantTime()->toDateString() == $time) {
+                $timeToPlant = $field;
+            }
+           }
+        }
+        return view('calender', compact('events', 'timeToPlant'));
     }
 }
