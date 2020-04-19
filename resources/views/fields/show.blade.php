@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-12">
             <div class="calednar-section">
-                @if($field->hasPlant())
+            @if($field->hasPlant())
                 
             <div class="jap-box text-center">
                 <div class="jp-select-box">
@@ -111,6 +111,8 @@
 
 
             </script>
+
+            {{-- if the field does not have plant => show th add modal to add a new plant --}}
             @else
             <div class="flex justify-center">
               <div class="window-box" >
@@ -125,6 +127,10 @@
                       <h3 class="jap-stroke text-center" data-text="土地の選択">土地の選択</h3>
                       <form action="{{ route('plant-field.store', $field->id)}}" method="POST" class="add_plant">
                         @csrf
+
+                        <div>
+                          <input class="text-center" type="date" name="plant_time">
+                        </div>
                         <div class="jp-select-plant row justify-content-center">
                               @foreach($plants as $plant)
                               {{-- <option value="">{{ $plant->name }}</option> --}}
